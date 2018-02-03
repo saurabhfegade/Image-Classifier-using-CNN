@@ -12,19 +12,18 @@ import matplotlib.pyplot as plt
 
 
 
-TRAIN_DIR = 'C:/Users/Rohit/Desktop/Vadapav and Not a Vadapav/train'
-TEST_DIR = 'C:/Users/Rohit/Desktop/Vadapav and Not a Vadapav/test'
+TRAIN_DIR = 'C:/Users/Saurabh/Desktop/Vadapav and Not a Vadapav/train'
+TEST_DIR = 'C:/Users/Saurabh/Desktop/Vadapav and Not a Vadapav/test'
 IMG_SIZE = 50
 LR = 1e-3
 
-MODEL_NAME = 'vadapav_vs_notvadapav-{}-{}.model'.format(LR, '6conv-basic') # just so we remember which saved model is which, sizes must match
+MODEL_NAME = 'vadapav_vs_notvadapav-{}-{}.model'.format(LR, '6conv-basic') 
 
 def label_img(img):
     word_label = img.split('.')[-3]
-    # conversion to one-hot array [cat,dog]
-    #                            [much cat, no dog]
+    
     if word_label == 'vadapav': return [1,0]
-    #                             [no cat, very doggo]
+                               
     elif word_label == 'not_a_vadapav': return [0,1]
 
 
@@ -56,12 +55,14 @@ def process_test_data():
     np.save('test_data.npy', testing_data)
     return testing_data
 
-#train_data = create_train_data()
+train_data = create_train_data()
 # If you have already created the dataset:
-train_data = np.load('train_data.npy')
+# train_data = np.load('train_data.npy')
 
 ###############################################################################
 test_data = process_test_data()
+# If you have already created the dataset:
+# test_data = np.load('test_data.npy')
 
 ###############################################################################
 convnet = input_data(shape=[None, IMG_SIZE, IMG_SIZE, 1], name='input')
@@ -93,7 +94,7 @@ if os.path.exists('{}.meta'.format(MODEL_NAME)):
     model.load(MODEL_NAME)
     print('model loaded!')
 ###############################################################################    
-'''train = train_data[:-60]
+train = train_data[:-60]
 test = train_data[-60:]
 
 X = np.array([i[0] for i in train]).reshape(-1,IMG_SIZE,IMG_SIZE,1)
@@ -106,7 +107,7 @@ model.fit({'input': X}, {'targets': Y}, n_epoch=25, validation_set=({'input': te
     snapshot_step=500, show_metric=True, run_id=MODEL_NAME)
 
 
-model.save(MODEL_NAME)'''
+model.save(MODEL_NAME)
 ###############################################################################
 
 test_data = np.load('test_data.npy')
