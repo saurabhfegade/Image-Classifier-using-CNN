@@ -39,11 +39,4 @@ google_crawler.crawl(keyword='sandwich', offset=0, max_num=100,
 
 
 
-'''bing_crawler = BingImageCrawler(downloader_threads=4,
-                                storage={'root_dir': 'C:/Users/Rohit/Desktop/Image Crawler/Images'})
-bing_crawler.crawl(keyword='vadapav', offset=0, max_num=50,
-                   min_size=None, max_size=None)
 
-baidu_crawler = BaiduImageCrawler(storage={'root_dir': 'C:/Users/Rohit/Desktop/Image Crawler/Images'})
-baidu_crawler.crawl(keyword='vadapav', offset=0, max_num=50,
-                    min_size=None, max_size=None)'''
